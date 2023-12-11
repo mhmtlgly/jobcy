@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  password  String
+  role      String
+  verified  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  employer EmployerProfile?
+  worker   WorkerProfile?
+}
+
+model EmployerProfile {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  info EmployerInfo
+  jobs JobListing[]
+
+  account   Account @relation(fields: [accountId], references: [id])
+  accountId String  @unique @db.ObjectId
+}
+
+type EmployerInfo {
+  name     String
+  location String
+  logo     String?
+  teamsize Int?
+  contact  EmployerContact
+}
+
+type EmployerContact {
+  email          String
+  phone          String?
+  website        String?
+  representative String?
+}
+
+model JobListing {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  description  String?
+  offer        JobOffer
+  requirements JobRequirements
+
+  employer   EmployerProfile @relation(fields: [employerId], references: [id])
+  employerId String          @db.ObjectId
+}
+
+type JobRequirements {
+  experience Int
+  techStack  String[]
+  education  String?
+}
+
+type JobOffer {
+  salary         Int?
+  role           String
+  position       String
+  location       String
+  employmentType String
+
+  benefits JobBenefits
+}
+
+type JobBenefits {
+  car      Boolean?
+  bike     Boolean?
+  ticket   Boolean?
+  holidays Int
+}
+
+model WorkerProfile {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  account   Account @relation(fields: [accountId], references: [id])
+  accountId String  @unique @db.ObjectId
+}
+
+// npx prisma
+// npx prisma init
+// npx prisma format
+// npx prisma generate => generate types for the prisma client
+// npx prisma db push => to push changes in your schema to the database
