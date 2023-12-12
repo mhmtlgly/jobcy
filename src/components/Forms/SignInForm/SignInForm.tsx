@@ -5,10 +5,11 @@ import Link from "next/link"
 import { signIn } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { toast, ToastContainer } from "react-toastify"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 import { SignInDataType, signInValidation } from "./validation"
-import { zodResolver } from "@hookform/resolvers/zod"
 import { useUser } from "@/hooks"
+import { Container, Heading } from "@/components"
 
 export function SignInForm() {
   const router = useRouter()
@@ -46,18 +47,18 @@ export function SignInForm() {
   return (
     <>
       <ToastContainer className="top-1/2" />
-      <div className="max-w-screen-sm mx-auto">
-        <h2 className="mb-10">Login to your Account</h2>
+      <Container className="max-w-screen-sm mx-auto">
+        <Heading className="mb-10">Login to your Account</Heading>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="grid gap-8 border rounded p-4"
         >
-          <div className="grid gap-1">
+          <Container className="grid gap-1">
             <label htmlFor="email">E-Mail</label>
             <input type="email" placeholder="Email" {...register("email")} />
             {errors.email && <p role="alert">{errors.email?.message}</p>}
-          </div>
-          <div className="grid gap-1">
+          </Container>
+          <Container className="grid gap-1">
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -66,11 +67,11 @@ export function SignInForm() {
               {...register("password")}
             />
             {errors.password && <p role="alert">{errors.password?.message}</p>}
-          </div>
+          </Container>
 
           <button className="capitalize">sign in</button>
         </form>
-        <div className="mt-10">
+        <Container className="mt-10">
           Don't have an account?{" "}
           <Link
             href="/account/sign-up"
@@ -78,8 +79,8 @@ export function SignInForm() {
           >
             sign up
           </Link>
-        </div>
-      </div>
+        </Container>
+      </Container>
     </>
   )
 }

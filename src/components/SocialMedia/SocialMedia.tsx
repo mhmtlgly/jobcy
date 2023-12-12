@@ -1,28 +1,33 @@
-import { Icon } from "@/components"
+import { socialMediaAccounts } from "./data"
+import {
+  Icon,
+  List,
+  ListItem,
+  Container,
+  Heading,
+  ExternalLink,
+} from "@/components"
 
 export function SocialMedia() {
   return (
-    <div className="flex flex-col items-center md:items-start gap-4">
-      <h3 className="uppercase text-gray-400 text-sm font-semibold">
+    <Container className="flex flex-col items-center md:items-start gap-4">
+      <Heading
+        level="h3"
+        className="uppercase text-gray-400 text-sm font-semibold"
+      >
         Social Media
-      </h3>
-      <ul className="flex space-x-4">
-        <li>
-          <a href="https://facebook.com">
-            <Icon icon="cib:facebook" />
-          </a>
-        </li>
-        <li>
-          <a href="https://twitter.com">
-            <Icon icon="cib:twitter" />
-          </a>
-        </li>
-        <li>
-          <a href="https://instagram.com">
-            <Icon icon="cib:instagram" />
-          </a>
-        </li>
-      </ul>
-    </div>
+      </Heading>
+      <List className="flex space-x-4">
+        {socialMediaAccounts.map((account) => (
+          <Container key={account.id}>
+            <ListItem>
+              <ExternalLink href={account.href}>
+                <Icon icon={account.icon} />
+              </ExternalLink>
+            </ListItem>
+          </Container>
+        ))}
+      </List>
+    </Container>
   )
 }

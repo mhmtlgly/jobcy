@@ -1,6 +1,4 @@
-import Link from "next/link"
-
-type links = {
+type footerLinksType = {
   id: string
   topic: string
   links: {
@@ -10,7 +8,7 @@ type links = {
   }[]
 }[]
 
-const links: links = [
+export const footerLinks: footerLinksType = [
   {
     id: "1",
     topic: "Services",
@@ -75,28 +73,3 @@ const links: links = [
     ],
   },
 ]
-
-export function Links() {
-  return (
-    <div className="flex flex-col md:flex-row gap-14 max-md:mx-auto max-md:text-center">
-      {links.map((link) => {
-        return (
-          <div key={link.id} className="flex flex-col gap-2">
-            <h3 className="uppercase text-gray-400 text-sm font-semibold">
-              {link.topic}
-            </h3>
-            <div className="flex flex-col gap-1">
-              {link.links.map((link) => {
-                return (
-                  <div key={link.id}>
-                    <Link href={link.href}>{link.title}</Link>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        )
-      })}
-    </div>
-  )
-}
