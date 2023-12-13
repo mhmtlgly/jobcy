@@ -1,10 +1,11 @@
-// This component is used when a layout.tsx file is created for a page. It allows to use seperate background-colors for each page => The <Content /> component in RootLayout must be removed.
+// Use this component if every page should have a unique bg-color
+// remove <Main /> component from RootLayout and replace with regular <main> tag
 
 import { cva, type VariantProps } from "cva"
 
 import { cn } from "@/utils"
 
-const pageStyles = cva("grow w-full py-10 px-4 md:px-8 lg:py-20", {
+const pageStyles = cva("grid h-full px-4 py-8 md:px-8 md:py-16", {
   variants: {},
   compoundVariants: [],
   defaultVariants: {},
@@ -16,6 +17,8 @@ export interface PageProps
 
 export const Page = ({ className, ...props }: PageProps) => (
   <div className={cn(pageStyles({ className }))} {...props}>
-    <div className="max-w-screen-xl mx-auto">{props.children}</div>
+    <div className="grid h-full max-w-screen-xl mx-auto w-full">
+      {props.children}
+    </div>
   </div>
 )
