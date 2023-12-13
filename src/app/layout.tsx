@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import { Nunito } from "next/font/google"
 
 import "./globals.css"
-import { Navbar, Footer } from "@/components"
+import { Navbar, Footer, Container, Main, Page, Content } from "@/components"
 import { Providers } from "@/providers"
 
 const nunito = Nunito({ subsets: ["latin"] })
@@ -19,16 +19,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={nunito.className}>
+      <body className={`${nunito.className} bg-neutral-50`}>
         <Providers>
-          <div className="min-h-screen grid grid-rows-[auto,1fr,auto]">
+          <Container className="min-h-screen flex flex-col">
             <Navbar />
-            <div className="p-14">
-              <main className="max-w-screen-xl mx-auto w-full h-full">
-                {children}
-              </main>
-            </div>
-          </div>
+            <Main>
+              <Content>{children}</Content>
+            </Main>
+          </Container>
           <Footer />
         </Providers>
       </body>

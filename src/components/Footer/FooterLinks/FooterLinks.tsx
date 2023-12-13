@@ -5,14 +5,14 @@ import { footerLinks } from "./data"
 
 export function FooterLinks() {
   return (
-    <Container className="flex flex-col md:flex-row gap-14 max-md:mx-auto max-md:text-center">
+    <Container className="flex flex-col md:flex-row gap-8">
       {footerLinks.map((link) => {
         return (
-          <Column key={link.id} className="gap-2">
+          <Column key={link.id} className="gap-3">
             <Heading className="uppercase text-gray-400 text-sm font-semibold">
               {link.topic}
             </Heading>
-            <List className="flex flex-col gap-1">
+            <List className="flex flex-col gap-3">
               {link.links.map((link) => {
                 return (
                   <ListItem key={link.id}>

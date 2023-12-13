@@ -10,7 +10,7 @@ export function Navigation() {
           <li key={link.id}>
             <Link
               href={link.href}
-              className="relative leading-none flex gap-1 items-center font-medium before:content-[''] before:h-0.5 before:w-[0%] before:bg-brand-950 before:absolute before:-bottom-0 before:translate-y-full hover:before:w-full before:transition-all before:rounded-full"
+              className="relative leading-none flex gap-1 items-center font-medium transition-all hover:font-bold duration-1000"
             >
               {link.name}
             </Link>
@@ -20,3 +20,5 @@ export function Navigation() {
     </nav>
   )
 }
+//  className =
+//    "relative leading-none flex gap-1 items-center font-medium before:content-[''] before:h-0.5 before:w-[0%] before:bg-brand-950 before:absolute before:-bottom-0 before:translate-y-full hover:before:w-full before:transition-all before:rounded-full"

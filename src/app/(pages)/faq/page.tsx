@@ -1,9 +1,9 @@
-import { SignInForm } from "@/components"
+import { Page, Container } from "@/components"
 
 export default function FAQPage() {
   return (
-    <div>
+    <Container>
       <div>FAQ</div>
-    </div>
+    </Container>
   )
 }
